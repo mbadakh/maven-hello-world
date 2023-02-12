@@ -9,4 +9,3 @@ WORKDIR /home/shiranuser
 COPY --from=build root/myapp/target/*.jar . 
 USER shiranuser
 CMD whoami && java -jar *.jar
-
