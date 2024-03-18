@@ -1,4 +1,4 @@
-FROM maven:3 as build
+FROM maven as build
 WORKDIR root/
 COPY . .
 RUN mvn -eX package --file ./myapp/pom.xml
