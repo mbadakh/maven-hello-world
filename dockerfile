@@ -1,7 +1,7 @@
 FROM maven:3 as build
 WORKDIR root/
 COPY . .
-RUN mvn package --file ./myapp/pom.xml
+RUN mvn -eX package --file ./myapp/pom.xml
 
 FROM openjdk
 RUN useradd -ms /bin/bash shiranuser
