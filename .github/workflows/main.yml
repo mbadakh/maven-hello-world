@@ -32,12 +32,13 @@ jobs:
         echo "new version --> $NEW_VERSION "
         echo ::set-output name=jar_version::${NEW_VERSION}
         mvn -q versions:set -DnewVersion="${NEW_VERSION}" --file myapp/pom.xml
+        cat myapp/pom.xml
         
         
     
     - name: Docker build
       run: |
-        docker build . --tag shiranitz/home_project:${{ steps.bump.outputs.jar_version }}
+        docker build . --tag mbadakh/maven_home_assignment:${{ steps.bump.outputs.jar_version }}
     
     - name: Login to DockerHub
       uses: docker/login-action@v1
@@ -47,8 +48,7 @@ jobs:
 
     - name: Docker push
       run: |
-        curl https://hub.docker.com/repository/docker/shiranitz/home_project/general
-        docker push shiranitz/home_project:${{ steps.bump.outputs.jar_version }}
+        docker push mbadakh/maven_home_assignment:${{ steps.bump.outputs.jar_version }}
   run:
     runs-on: ubuntu-18.04
     needs: [build]
@@ -62,5 +62,5 @@ jobs:
         
     - name: Run container
       run: |
-        docker run -i shiranitz/home_project:${{needs.build.outputs.jar_version}}
+        docker run -i mbadakh/maven_home_assignment:${{ steps.bump.outputs.jar_version }}
 
