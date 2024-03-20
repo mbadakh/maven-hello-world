@@ -62,5 +62,5 @@ jobs:
         
     - name: Run container
       run: |
-        docker run -i mbadakh/maven_home_assignment:${{ steps.bump.outputs.jar_version }}
+        docker run mbadakh/maven_home_assignment:${{ steps.bump.outputs.jar_version }}
 
