@@ -50,7 +50,7 @@ jobs:
       run: |
         docker push mbadakh/maven_home_assignment:${{ steps.bump.outputs.jar_version }}
   run:
-    runs-on: ubuntu-18.04
+    runs-on: ubuntu-latest
     needs: [build]
 
     steps:
@@ -62,5 +62,5 @@ jobs:
         
     - name: Run container
       run: |
-        docker run mbadakh/maven_home_assignment:${{ steps.bump.outputs.jar_version }}
+        docker run -i mbadakh/maven_home_assignment:${{ steps.bump.outputs.jar_version }}
 
